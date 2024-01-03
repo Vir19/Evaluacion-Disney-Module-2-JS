@@ -1,7 +1,35 @@
-body {
-  padding: 2rem;
-  height: 100vh;
-  background-image: url('../images/bg-adalab.png');
-  background-color: $color-bg;
-  font-family: $font-main;
+.form {
+  display: flex;
+  justify-content: center;
+  //margin: 0rem 0rem 1rem 0rem;
+  position: relative;
+  z-index: 1;
+  .inputSearchContainer{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 40rem;
+    height: 5rem;
+    background-color: white;
+    justify-content: center;
+    box-shadow: rgba(194, 190, 190, 0.358) 2px 2px 1px 1px;
+    .inputSearch {
+      width: 20rem;
+      height: 1.5rem;
+      border: 3px solid rgb(98, 35, 110);
+      border-radius: 5px;
+    }
+    .buttonSearch{
+      width: 4rem;
+      height: 1.5rem;
+      background-color: rgb(98, 35, 110) ;
+      border: 0px;
+      border-radius: 7px;
+      color: rgb(236, 191, 212);
+    }
+  }
+}
+.card-section {
+  width: 100%;
+  height: 30rem;
 }

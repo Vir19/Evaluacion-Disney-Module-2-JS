@@ -1,5 +1,7 @@
-.page__header {
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 3rem;
+.header {
+  background-image: url('/images/disney.webp');
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 11rem;
 }
