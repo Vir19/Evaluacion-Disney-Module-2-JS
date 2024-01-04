@@ -44,8 +44,67 @@ const characterInfo = [
     "updatedAt": "2021-12-20T20:39:18.032Z",
     "url": "https://api.disneyapi.dev/characters/18",
     "__v": 0
-    }
+    },
+    {
+      "_id": 36,
+      "films": [],
+      "shortFilms": [],
+      "tvShows": [
+      "K.C. Undercover"
+      ],
+      "videoGames": [],
+      "parkAttractions": [],
+      "allies": [],
+      "enemies": [],
+      "sourceUrl": "https://disney.fandom.com/wiki/Candace_Adams",
+      "name": "Candace Adams",
+      "imageUrl": "https://static.wikia.nocookie.net/disney/images/8/8b/Enemy_of_the_State_promo_3.jpg",
+      "createdAt": "2021-04-12T01:26:16.062Z",
+      "updatedAt": "2021-12-20T20:39:18.033Z",
+      "url": "https://api.disneyapi.dev/characters/36",
+      "__v": 0
+      },
+      {
+        "_id": 181,
+        "films": [],
+        "shortFilms": [],
+        "tvShows": [
+        "Chip 'n Dale Rescue Rangers"
+        ],
+        "videoGames": [],
+        "parkAttractions": [],
+        "allies": [],
+        "enemies": [],
+        "sourceUrl": "https://disney.fandom.com/wiki/Irwina_Allen",
+        "name": "Irwina Allen",
+        "imageUrl": "https://static.wikia.nocookie.net/disney/images/4/48/Chip_%27n_Dale_Rescue_Rangers_109_Risky_Beesness_arsenaloyal_-_YouTube12.jpg",
+        "createdAt": "2021-04-12T01:32:15.300Z",
+        "updatedAt": "2021-12-20T20:39:18.877Z",
+        "url": "https://api.disneyapi.dev/characters/181",
+        "__v": 0
+        },
+        {
+          "_id": 204,
+          "films": [
+          "The Robber Kitten",
+          "Mickey's Polo Team"
+          ],
+          "shortFilms": [],
+          "tvShows": [],
+          "videoGames": [],
+          "parkAttractions": [],
+          "allies": [],
+          "enemies": [],
+          "sourceUrl": "https://disney.fandom.com/wiki/Ambrose",
+          "name": "Ambrose",
+          "imageUrl": "https://static.wikia.nocookie.net/disney/images/d/d3/Ambrose.jpg",
+          "createdAt": "2021-04-12T01:32:29.083Z",
+          "updatedAt": "2021-12-20T20:39:19.408Z",
+          "url": "https://api.disneyapi.dev/characters/204",
+          "__v": 0
+          }
 ]
+
 // FUNCIONES
 function renderCharacter(characterData) {
   charactersUl.innerHTML += `
@@ -58,12 +117,16 @@ function renderCharacter(characterData) {
   `;
 }
 
+function renderAllCharacters(){
+  for(let i=0; i < characterInfo.length; i++) {
+    renderCharacter(characterInfo[i]);
+  }
+}
 // FUNCIONES HANDLER
 
 // EVENTOS
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
-renderCharacter(characterInfo[0]);
-renderCharacter(characterInfo[1]);
+renderAllCharacters();
 
