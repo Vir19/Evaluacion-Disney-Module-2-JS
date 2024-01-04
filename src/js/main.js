@@ -1,5 +1,5 @@
 'use strict';
-console.log('>> Ready :)');
+import './partials js/_character-list';
 
 // QUERY SELECTOR
 const inputSearch = document.querySelector('.js__inputSearch');
