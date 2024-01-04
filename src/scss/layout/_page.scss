@@ -1,7 +1,6 @@
 .form {
   display: flex;
   justify-content: center;
-  //margin: 0rem 0rem 1rem 0rem;
   position: relative;
   z-index: 1;
   .inputSearchContainer{
@@ -26,10 +25,43 @@
       border: 0px;
       border-radius: 7px;
       color: rgb(236, 191, 212);
+      cursor: pointer;
     }
   }
 }
-.card-section {
+main {
   width: 100%;
-  height: 30rem;
+  height: 75vh;
 }
+
+.flex{
+  display: flex;
+  .card-section {
+    width: 100%;
+    height: 32.6rem;
+  }
+    .character-card {
+      list-style: none;
+      width: 11rem;
+      height: 10.5rem;
+      margin-left: 0.5rem;
+      margin-top: 1rem;
+      background-color: burlywood;
+      .name {
+        text-align: center;
+      }
+      .pic {
+        width: 10rem;
+        height: 8rem;
+        margin-left: 0.5rem;
+      }
+    }
+  .favourites {
+      background-color: black;
+      width: 15rem;
+      margin-right: 0.5rem;
+      height: 32.6rem;
+      margin-top: 1rem;
+  }
+}
+
