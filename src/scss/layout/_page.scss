@@ -1,5 +1,15 @@
 // font-family: 'Advent Pro', sans-serif;
 // font-family: 'Poppins', sans-serif;
+//THIS STYLES WORK GREAT ON TABLET (SAVE FOR MEDIA QUERIES)
+
+:root{
+  font-size: 62.5%;
+}
+
+.main {
+  width: 100%;
+  height: 202rem;
+}
 
 .form {
   display: flex;
@@ -34,10 +44,6 @@
       box-shadow: gray 0 0 4px;
     }
   }
-}
-main {
-  width: 100%;
-  height: 75vh;
 }
 
 .flex{
@@ -75,7 +81,7 @@ main {
       background-color: black;
       width: 15rem;
       margin-right: 0.5rem;
-      height: 32.6rem;
+      height: 196rem;
       margin-top: 1rem;
   }
 }

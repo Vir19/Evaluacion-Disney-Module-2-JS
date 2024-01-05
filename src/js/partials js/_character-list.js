@@ -1,7 +1,7 @@
 const charactersUl = document.querySelector('.js_characters');
 
 // DATOS
-const characterInfo = [
+/* const characterInfo = [
   {
     "_id": 112,
     "films": [
@@ -103,7 +103,11 @@ const characterInfo = [
           "url": "https://api.disneyapi.dev/characters/204",
           "__v": 0
           }
-]
+] */
+let characterInfo = [];
+const placeHolderPhoto = 'https://via.placeholder.com/110x105/ffffff/555555/?text=Disney';
+const newPhoto = { imageUrl: placeHolderPhoto };
+
 
 // FUNCIONES
 function renderCharacter(characterData) {
@@ -128,5 +132,26 @@ function renderAllCharacters(){
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
-renderAllCharacters();
+
+fetch ('//api.disneyapi.dev/character?pageSize=50')
+.then(response => response.json())
+.then(data => {
+ console.log(data.data);
+ characterInfo = data.data;
+
+ renderAllCharacters();
+});
+
+ /* characterInfo[12] = newPhoto;    //charactersUl
+const newHTMLelement = `
+<ul class="character-card">
+  <li class="name">${[characterInfo].name}</li>
+  <li><img class="pic" src="${newPhoto.imageUrl}" alt="Nuevo Personaje"></li>
+</ul>
+`; */
+
+charactersUl.innerHTML += newHTMLelement;
+
+
+// Array 12, meter place holder https://via.placeholder.com/110x105/ffffff/555555/?text=Disney
 
