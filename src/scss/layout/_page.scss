@@ -8,7 +8,7 @@
 
 .main {
   width: 100%;
-  height: 202rem;
+  height: 160rem;
 }
 
 .form {
@@ -52,19 +52,18 @@
     width: 100%;
     height: 32.6rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     .character-card {
       display: flex;
       flex-direction: column;
       list-style: none;
       width: 11rem;
       height: 10.5rem;
-      margin-left: 0.5rem;
-      margin-top: 1rem;
-      background-color: rgb(207, 199, 206);
-      box-shadow: gray 0 0 4px;
+      margin: 1rem 0rem 0rem 0.5rem
+    //  background-color: rgb(207, 199, 206);
+    //  box-shadow: gray 0 0 4px;
+    }
       .name {
         text-align: center;
         font-family: 'Advent Pro', sans-serif;
@@ -79,10 +78,11 @@
     }
   .favourites {
       background-color: black;
-      width: 15rem;
-      margin-right: 0.5rem;
-      height: 196rem;
-      margin-top: 1rem;
+      width: 17rem;
+      height: 150rem;
+      margin: 1rem 0.5rem 0 0;
   }
-}
+ }
+
+
 
