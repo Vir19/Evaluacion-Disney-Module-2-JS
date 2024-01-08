@@ -2,6 +2,7 @@
 
 const charactersUl = document.querySelector('.js_characters');
 const placeHolderPhoto = 'https://via.placeholder.com/110x105/ffffff/555555/?text=Disney';
+const favourites = document.querySelector('.js__favourites');
 //const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
@@ -9,6 +10,7 @@ let favouritesData = [];
 
 // FUNCIONES
 function renderCharacter(characterData) {
+//  charactersUl.innerHTML = '';
   charactersUl.innerHTML += `
     <ul class="character-card" data-id="${characterData._id}">
       <li class="name li" data-id="${characterData._id}">${characterData.name}</li>
@@ -26,6 +28,30 @@ function renderAllCharacters(){
   handleClickFavourited();
 }
 
+function renderFavourite(favouriteData) {
+favourites.innerHTML += '';
+let isAlreadyFavourite = false;
+if (favouriteData) {
+ isAlreadyFavourite = favouritesData.findIndex((oneCharacter)=> oneCharacter.id ===parseInt(favouriteData._id)) !== -1;
+}
+if (!isAlreadyFavourite) {
+favourites.innerHTML += `
+<ul class="character-card" data-id="${favouriteData._id}">
+  <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}</li>
+  <li class="li" data-id="${favouriteData._id}">
+    <img class="pic" src=${favouriteData.imageUrl} alt="${favouriteData.name}">
+  </li>
+</ul>
+`;
+ }
+}
+
+function renderAllFavourites () {
+  for(let i=0; i < favouritesData.length; i++) {
+    renderFavourite(favouritesData[i]);
+  }
+}
+
 // FUNCIONES HANDLER
 
 function handleClickFavourited () {
@@ -35,17 +61,28 @@ function handleClickFavourited () {
       const clickedLi = event.currentTarget;
       const clickedCharacterId = clickedLi.dataset.id;
 
-    const selectedCharacterData = characterInfo.find((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId) );
+  const selectedCharacterData = characterInfo.find((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId) );
 
-      
-     
-     console.log('Clicked ID:', clickedCharacterId);
-      console.log('Selected Character Data:', selectedCharacterData);
+  const favouriteCharacterIndex = favouritesData.findIndex((oneCharacter)=> oneCharacter.id ===parseInt(clickedCharacterId));
+  
+  console.log('clickado favorito', favouriteCharacterIndex);
 
-
-      clickedLi.classList.toggle('favourited'); 
-    })
+   if (favouriteCharacterIndex === -1) {
+    favouritesData.push (selectedCharacterData);
+  }
+  else {
+    // la quito
   } 
+
+  
+  renderFavourite(selectedCharacterData);
+
+  // console.log('Clicked ID:', clickedCharacterId);
+  console.log('Selected Character Data:', selectedCharacterData);
+
+  clickedLi.classList.toggle('favourited'); 
+  })
+ } 
 }
 
 // EVENTOS

@@ -63,6 +63,9 @@
       margin: 1rem 0rem 0rem 0.5rem;
       background-color: rgb(198, 192, 197);
       box-shadow: gray 0 0 4px;
+      .favourited {
+        background-color: rgb(236, 236, 156);
+      }
     }
     .name {
         text-align: center;
@@ -82,10 +85,30 @@
       width: 17rem;
       height: 150rem;
       margin: 1rem 0.5rem 0 0;
-  }
-}
-.favourited {
-  background-color: rgb(236, 236, 156);
+      color: antiquewhite;
+      .character-card {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        width: 11rem;
+        height: 10.5rem;
+        margin: 1rem 0rem 0rem 0.5rem;
+        background-color: rgb(236, 236, 156);
+        box-shadow: gray 0 0 4px;
+        .name {
+          text-align: center;
+          font-family: 'Advent Pro', sans-serif;
+          font-weight: 600;
+          color: rgb(94, 0, 128);
+          cursor: pointer;
+        }
+        .pic {
+          width: 10rem;
+          height: 8rem;
+          margin-left: 0.5rem;
+        }
+   }
+ }
 }
 
 
