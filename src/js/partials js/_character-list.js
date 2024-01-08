@@ -10,7 +10,6 @@ let favouritesData = [];
 
 // FUNCIONES
 function renderCharacter(characterData) {
-//  charactersUl.innerHTML = '';
   charactersUl.innerHTML += `
     <ul class="character-card" data-id="${characterData._id}">
       <li class="name li" data-id="${characterData._id}">${characterData.name}</li>
@@ -29,12 +28,8 @@ function renderAllCharacters(){
 }
 
 function renderFavourite(favouriteData) {
-favourites.innerHTML += '';
-let isAlreadyFavourite = false;
-if (favouriteData) {
- isAlreadyFavourite = favouritesData.findIndex((oneCharacter)=> oneCharacter.id ===parseInt(favouriteData._id)) !== -1;
-}
-if (!isAlreadyFavourite) {
+favourites.innerHTML = '';
+favouritesData.forEach((favouriteData) => { 
 favourites.innerHTML += `
 <ul class="character-card" data-id="${favouriteData._id}">
   <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}</li>
@@ -43,7 +38,7 @@ favourites.innerHTML += `
   </li>
 </ul>
 `;
- }
+ });
 }
 
 function renderAllFavourites () {
@@ -56,23 +51,24 @@ function renderAllFavourites () {
 
 function handleClickFavourited () {
   const allCharactersLi = document.querySelectorAll('.name');
-  for (const characterLi of allCharactersLi ) {
+ // for (const characterLi of allCharactersLi ) {
+  allCharactersLi.forEach((characterLi)=> {
     characterLi.addEventListener('click', (event) => {
       const clickedLi = event.currentTarget;
       const clickedCharacterId = clickedLi.dataset.id;
 
   const selectedCharacterData = characterInfo.find((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId) );
-
-  const favouriteCharacterIndex = favouritesData.findIndex((oneCharacter)=> oneCharacter.id ===parseInt(clickedCharacterId));
+  const favouriteCharacterIndex = favouritesData.findIndex((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId));
   
   console.log('clickado favorito', favouriteCharacterIndex);
 
-   if (favouriteCharacterIndex === -1) {
+
+  if (favouriteCharacterIndex === -1) {
     favouritesData.push (selectedCharacterData);
   }
   else {
-    // la quito
-  } 
+    favouritesData.splice(favouriteCharacterIndex, 1);
+   }   
 
   
   renderFavourite(selectedCharacterData);
@@ -81,8 +77,8 @@ function handleClickFavourited () {
   console.log('Selected Character Data:', selectedCharacterData);
 
   clickedLi.classList.toggle('favourited'); 
-  })
- } 
+  });
+ });
 }
 
 // EVENTOS
