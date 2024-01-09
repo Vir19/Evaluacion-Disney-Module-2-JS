@@ -86,25 +86,19 @@ function handleDeleteFavourited () {
     
     if (clickedElement.classList.contains('js_trashCan')) {
 
-      // Obtén el elemento ul que contiene la tarjeta del personaje
       const characterCard = clickedElement.closest('.character-card');
 
-      // Obtén el id del personaje asociado a la tarjeta
       const characterId = characterCard.dataset.id;
 
-      // Encuentra el índice del personaje en el array de favoritos
       const characterIndex = favouritesData.findIndex(
         (oneCharacter) => oneCharacter._id === parseInt(characterId)
       );
 
-      // Si se encuentra el personaje, elimínalo
       if (characterIndex !== -1) {
         favouritesData.splice(characterIndex, 1);
 
-        // Actualiza el LocalStorage
         localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
       
-        // Vuelve a renderizar la lista de favoritos
         renderAllFavourites();
       }
     }
@@ -124,8 +118,6 @@ searchForm.addEventListener ('submit', (event) => {
 
    renderAllCharacters();
   })
-
-
 });
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
