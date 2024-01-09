@@ -6,7 +6,7 @@ const favourites = document.querySelector('.js__favourites');
 //const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
-
+const trashCan = document.querySelector('.js_trashCan');
 
 // FUNCIONES
 function renderCharacter(characterData) {
@@ -32,11 +32,13 @@ favourites.innerHTML = '';
 favouritesData.forEach((favouriteData) => { 
 favourites.innerHTML += `
 <ul class="character-card" data-id="${favouriteData._id}">
-  <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}</li>
+  <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}<i class="fa-solid fa-trash-can trash-can js_trashCan"></i></li>
   <li class="li" data-id="${favouriteData._id}">
     <img class="pic" src=${favouriteData.imageUrl} alt="${favouriteData.name}">
   </li>
 </ul>
+
+
 `;
  });
 }
