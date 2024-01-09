@@ -35,13 +35,12 @@ favourites.innerHTML = '';
 favouritesData.forEach((favouriteData) => { 
 favourites.innerHTML += `
 <ul class="character-card" data-id="${favouriteData._id}">
-  <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}<i class="fa-solid fa-trash-can trash-can js_trashCan"></i></li>
+    <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}</li>
+    <span class="trash-can js_trashCan">X</span>
   <li class="li" data-id="${favouriteData._id}">
     <img class="pic" src=${favouriteData.imageUrl} alt="${favouriteData.name}">
   </li>
 </ul>
-
-
 `;
  });
 }
@@ -81,6 +80,38 @@ function handleClickFavourited () {
  });
 }
 
+function handleDeleteFavourited () {
+  favourites.addEventListener('click', (event) => {
+    const clickedElement = event.target;
+    
+    if (clickedElement.classList.contains('js_trashCan')) {
+
+      // Obtén el elemento ul que contiene la tarjeta del personaje
+      const characterCard = clickedElement.closest('.character-card');
+
+      // Obtén el id del personaje asociado a la tarjeta
+      const characterId = characterCard.dataset.id;
+
+      // Encuentra el índice del personaje en el array de favoritos
+      const characterIndex = favouritesData.findIndex(
+        (oneCharacter) => oneCharacter._id === parseInt(characterId)
+      );
+
+      // Si se encuentra el personaje, elimínalo
+      if (characterIndex !== -1) {
+        favouritesData.splice(characterIndex, 1);
+
+        // Actualiza el LocalStorage
+        localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
+      
+        // Vuelve a renderizar la lista de favoritos
+        renderAllFavourites();
+      }
+    }
+  });
+}
+
+
 // EVENTOS
 
 searchForm.addEventListener ('submit', (event) => {
@@ -113,6 +144,7 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
      favouritesData = [];
  }
  renderAllFavourites();
+ handleDeleteFavourited();
 });
 
 

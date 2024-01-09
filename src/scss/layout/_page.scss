@@ -82,11 +82,14 @@
       }
     }
   .favourites {
-      background-color: black;
       width: 17rem;
       height: 150rem;
       margin: 1rem 0.5rem 0 0;
       color: antiquewhite;
+      .textfav {
+        font-size: 1rem;
+        color: black;
+      }
       .character-card {
         display: flex;
         flex-direction: column;
@@ -96,14 +99,24 @@
         margin: 1rem 0rem 0rem 0.5rem;
         background-color: rgb(236, 236, 156);
         box-shadow: gray 0 0 4px;
-        .name {
-          text-align: center;
-          font-family: 'Advent Pro', sans-serif;
-          font-weight: 600;
-          color: rgb(94, 0, 128);
-          cursor: pointer;
+          .name {
+            text-align: center;
+            font-family: 'Advent Pro', sans-serif;
+            font-weight: 900;
+            color: rgb(135, 59, 21);
+            cursor: pointer;
+          }
           .trash-can {
+            font-family: 'Advent Pro', sans-serif;
+            text-align: center;
             font-size: 1rem;
+            width: 1.5rem;
+            font-weight: 900;
+            color: white; 
+            background-color: black;
+            border: solid 1px white;
+            position: absolute;
+            cursor: pointer;
           }
         }
         .pic {
@@ -113,7 +126,5 @@
         }
    }
  }
-}
-
 
 
