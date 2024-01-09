@@ -3,6 +3,9 @@
 const charactersUl = document.querySelector('.js_characters');
 const placeHolderPhoto = 'https://via.placeholder.com/110x105/ffffff/555555/?text=Disney';
 const favourites = document.querySelector('.js__favourites');
+const searchForm = document.querySelector('.js__searchForm');
+const inputSearch = document.querySelector('.js__inputSearch');
+const btnSearch = document.querySelector('.js__btnSearch');
 //const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
@@ -44,6 +47,7 @@ favourites.innerHTML += `
 }
 
 function renderAllFavourites () {
+  favourites.innerHTML = '';
   for(let i=0; i < favouritesData.length; i++) {
     renderFavourite(favouritesData[i]);
   }
@@ -53,7 +57,6 @@ function renderAllFavourites () {
 
 function handleClickFavourited () {
   const allCharactersLi = document.querySelectorAll('.name');
- // for (const characterLi of allCharactersLi ) {
   allCharactersLi.forEach((characterLi)=> {
     characterLi.addEventListener('click', (event) => {
       const clickedLi = event.currentTarget;
@@ -62,21 +65,16 @@ function handleClickFavourited () {
   const selectedCharacterData = characterInfo.find((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId) );
   const favouriteCharacterIndex = favouritesData.findIndex((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId));
   
-  console.log('clickado favorito', favouriteCharacterIndex);
-
-
   if (favouriteCharacterIndex === -1) {
     favouritesData.push (selectedCharacterData);
   }
   else {
     favouritesData.splice(favouriteCharacterIndex, 1);
-   }   
+  }   
 
-  
+  localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
+ 
   renderFavourite(selectedCharacterData);
-
-  // console.log('Clicked ID:', clickedCharacterId);
-  console.log('Selected Character Data:', selectedCharacterData);
 
   clickedLi.classList.toggle('favourited'); 
   });
@@ -85,8 +83,21 @@ function handleClickFavourited () {
 
 // EVENTOS
 
-// CÓDIGO CUANDO CARGA LA PÁGINA
+searchForm.addEventListener ('submit', (event) => {
+  event.preventDefault();
+  charactersUl.innerHTML = '';
+  fetch(`//api.disneyapi.dev/character?name=${inputSearch.value}`)
+  .then (response => response.json())
+  .then (data => {
+   characterInfo = data.data;
 
+   renderAllCharacters();
+  })
+
+
+});
+
+// CÓDIGO CUANDO CARGA LA PÁGINA
 
 fetch ('//api.disneyapi.dev/character?pageSize=50')
 .then(response => response.json())
@@ -95,20 +106,13 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
  characterInfo = data.data;
 
  renderAllCharacters();
+ const storedFavouritesData = localStorage.getItem('favouritesData');
+ if (storedFavouritesData) {
+     favouritesData = JSON.parse(storedFavouritesData);
+ } else {
+     favouritesData = [];
+ }
+ renderAllFavourites();
 });
 
-
-
-/* characterInfo[12] = newPhoto;    //charactersUl
-const newHTMLelement = `
-<ul class="character-card">
-  <li class="name">${[characterInfo].name}</li>
-  <li><img class="pic" src="${newPhoto.imageUrl}" alt="Nuevo Personaje"></li>
-</ul>
-`; */
-
-//charactersUl.innerHTML += newHTMLelement;
-
-
-// Array 12, meter place holder https://via.placeholder.com/110x105/ffffff/555555/?text=Disney
 

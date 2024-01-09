@@ -19,15 +19,15 @@
   .inputSearchContainer{
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     width: 40rem;
     height: 5rem;
     background-color: white;
     justify-content: center;
     box-shadow: gray 0 0 4px;
     .inputSearch {
-      width: 20rem;
-      height: 1.5rem;
+      width: 22rem;
+      height: 2rem;
       border: 3px solid rgb(98, 35, 110);
       border-radius: 5px;
     }
