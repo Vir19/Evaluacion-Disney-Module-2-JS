@@ -45,6 +45,7 @@ favourites.innerHTML += `
 }
 
 function renderAllFavourites () {
+  favourites.innerHTML = '';
   for(let i=0; i < favouritesData.length; i++) {
     renderFavourite(favouritesData[i]);
   }
@@ -54,7 +55,6 @@ function renderAllFavourites () {
 
 function handleClickFavourited () {
   const allCharactersLi = document.querySelectorAll('.name');
- // for (const characterLi of allCharactersLi ) {
   allCharactersLi.forEach((characterLi)=> {
     characterLi.addEventListener('click', (event) => {
       const clickedLi = event.currentTarget;
@@ -70,6 +70,8 @@ function handleClickFavourited () {
     favouritesData.splice(favouriteCharacterIndex, 1);
   }   
 
+  localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
+ 
   renderFavourite(selectedCharacterData);
 
   clickedLi.classList.toggle('favourited'); 
@@ -78,8 +80,6 @@ function handleClickFavourited () {
 }
 
 // EVENTOS
-
-//   searchForm  btnSearch   inputSearch
 
 searchForm.addEventListener ('submit', (event) => {
   event.preventDefault();
@@ -97,7 +97,6 @@ searchForm.addEventListener ('submit', (event) => {
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
-
 fetch ('//api.disneyapi.dev/character?pageSize=50')
 .then(response => response.json())
 .then(data => {
@@ -105,21 +104,13 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
  characterInfo = data.data;
 
  renderAllCharacters();
+ const storedFavouritesData = localStorage.getItem('favouritesData');
+ if (storedFavouritesData) {
+     favouritesData = JSON.parse(storedFavouritesData);
+ } else {
+     favouritesData = [];
+ }
+ renderAllFavourites();
 });
 
-
-
-
-/* characterInfo[12] = newPhoto;    //charactersUl
-const newHTMLelement = `
-<ul class="character-card">
-  <li class="name">${[characterInfo].name}</li>
-  <li><img class="pic" src="${newPhoto.imageUrl}" alt="Nuevo Personaje"></li>
-</ul>
-`; */
-
-//charactersUl.innerHTML += newHTMLelement;
-
-
-// Array 12, meter place holder https://via.placeholder.com/110x105/ffffff/555555/?text=Disney
 
