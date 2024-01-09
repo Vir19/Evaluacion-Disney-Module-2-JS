@@ -3,6 +3,9 @@
 const charactersUl = document.querySelector('.js_characters');
 const placeHolderPhoto = 'https://via.placeholder.com/110x105/ffffff/555555/?text=Disney';
 const favourites = document.querySelector('.js__favourites');
+const searchForm = document.querySelector('.js__searchForm');
+const inputSearch = document.querySelector('.js__inputSearch');
+const btnSearch = document.querySelector('.js__btnSearch');
 //const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
@@ -60,21 +63,14 @@ function handleClickFavourited () {
   const selectedCharacterData = characterInfo.find((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId) );
   const favouriteCharacterIndex = favouritesData.findIndex((oneCharacter)=> oneCharacter._id === parseInt(clickedCharacterId));
   
-  console.log('clickado favorito', favouriteCharacterIndex);
-
-
   if (favouriteCharacterIndex === -1) {
     favouritesData.push (selectedCharacterData);
   }
   else {
     favouritesData.splice(favouriteCharacterIndex, 1);
-   }   
+  }   
 
-  
   renderFavourite(selectedCharacterData);
-
-  // console.log('Clicked ID:', clickedCharacterId);
-  console.log('Selected Character Data:', selectedCharacterData);
 
   clickedLi.classList.toggle('favourited'); 
   });
@@ -82,6 +78,22 @@ function handleClickFavourited () {
 }
 
 // EVENTOS
+
+//   searchForm  btnSearch   inputSearch
+
+searchForm.addEventListener ('submit', (event) => {
+  event.preventDefault();
+  charactersUl.innerHTML = '';
+  fetch(`//api.disneyapi.dev/character?name=${inputSearch.value}`)
+  .then (response => response.json())
+  .then (data => {
+   characterInfo = data.data;
+
+   renderAllCharacters();
+  })
+
+
+});
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
@@ -94,6 +106,7 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
 
  renderAllCharacters();
 });
+
 
 
 
