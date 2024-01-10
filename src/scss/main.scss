@@ -1,3 +1,7 @@
+:root{
+  font-size: 62.5%;
+}
+
 @import 'core/variables';
 @import 'core/reset';
 @import 'components/code';
@@ -7,3 +11,4 @@
 @import 'layout/footer';
 @import 'pages/index';
 @import 'core/mediaqueries';
+
