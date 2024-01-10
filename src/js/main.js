@@ -120,12 +120,18 @@ function handleDeleteFavourited () {
 
   });
 }
+function removeFavouritedOne () {}
 
 function handleDeleteAllFavourites() {
   deleteAllBtn.addEventListener('click', (event) => {
     event.preventDefault();
+    const allCharactersLi = document.querySelectorAll('.name');
+    allCharactersLi.forEach((characterLi) => {
+      characterLi.classList.remove('favourited');
+    });
     favouritesData = []; 
     localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
+  
     renderAllFavourites(); 
   });
 }
