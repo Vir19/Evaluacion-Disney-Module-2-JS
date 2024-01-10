@@ -83,13 +83,9 @@
     }
   .favourites {
       width: 17rem;
-      height: 150rem;
+      height: 80vh;
       margin: 1rem 0.5rem 0 0;
       color: antiquewhite;
-      .textfav {
-        font-size: 1rem;
-        color: black;
-      }
       .character-card {
         display: flex;
         flex-direction: column;
@@ -127,4 +123,26 @@
    }
  }
 
-
+ .textfav {
+  font-size: 1.2rem;
+  color: black;
+  margin-left: 3rem;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: underline;
+ }
+ .delete-btn {
+  width: 11rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(0, 255, 255, 0.414);
+  color: rgb(1, 1, 74);
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0rem 0rem 15rem 1rem;
+  border: solid 1px rgb(21, 7, 70);
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  box-shadow: gray 0 0 4px;
+}
