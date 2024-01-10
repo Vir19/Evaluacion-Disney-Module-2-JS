@@ -10,6 +10,7 @@ const btnSearch = document.querySelector('.js__btnSearch');
 let characterInfo = [];
 let favouritesData = [];
 const trashCan = document.querySelector('.js_trashCan');
+const deleteAllBtn = document.querySelector('.js__deleteAllBtn');
 
 // FUNCIONES
 function renderCharacter(characterData) {
@@ -105,6 +106,14 @@ function handleDeleteFavourited () {
   });
 }
 
+function handleDeleteAllFavourites() {
+  deleteAllBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    favouritesData = []; 
+    localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
+    renderAllFavourites(); 
+  });
+}
 
 // EVENTOS
 
@@ -137,4 +146,5 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
  }
  renderAllFavourites();
  handleDeleteFavourited();
+ handleDeleteAllFavourites();
 });
