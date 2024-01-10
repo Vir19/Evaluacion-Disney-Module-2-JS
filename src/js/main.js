@@ -11,6 +11,8 @@ let characterInfo = [];
 let favouritesData = [];
 const trashCan = document.querySelector('.js_trashCan');
 const deleteAllBtn = document.querySelector('.js__deleteAllBtn');
+const textFav = document.querySelector('.js__textFav');
+const favouritedCharacter = document.querySelector('.js_favouritedCharacter');
 
 // FUNCIONES
 function renderCharacter(characterData) {
@@ -35,7 +37,7 @@ function renderFavourite(favouriteData) {
 favourites.innerHTML = '';
 favouritesData.forEach((favouriteData) => { 
 favourites.innerHTML += `
-<ul class="character-card" data-id="${favouriteData._id}">
+<ul class="character-card js_favouritedCharacter" data-id="${favouriteData._id}">
     <li class="name li" data-id="${favouriteData._id}">${favouriteData.name}</li>
     <span class="trash-can js_trashCan">X</span>
   <li class="li" data-id="${favouriteData._id}">
@@ -73,10 +75,12 @@ function handleClickFavourited () {
   }   
 
   localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
- 
+
   renderFavourite(selectedCharacterData);
 
-  clickedLi.classList.toggle('favourited'); 
+  if (clickedLi.classList.contains('favourited') === false) {
+    clickedLi.classList.add('favourited');
+  }
   });
  });
 }
@@ -105,10 +109,15 @@ function handleDeleteFavourited () {
         // Actualiza el LocalStorage
         localStorage.setItem('favouritesData', JSON.stringify(favouritesData));
       
+        const characterLi = document.querySelector(`.name[data-id="${characterId}"]`);
+        if (characterLi) {
+          characterLi.classList.remove('favourited');
+        }
         // Vuelve a renderizar la lista de favoritos
         renderAllFavourites();
-      }
+      }  
     }
+
   });
 }
 
