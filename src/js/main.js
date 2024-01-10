@@ -11,8 +11,8 @@ let characterInfo = [];
 let favouritesData = [];
 const trashCan = document.querySelector('.js_trashCan');
 const deleteAllBtn = document.querySelector('.js__deleteAllBtn');
-const textFav = document.querySelector('.js__textFav');
-const favouritedCharacter = document.querySelector('.js_favouritedCharacter');
+
+
 
 // FUNCIONES
 function renderCharacter(characterData) {
