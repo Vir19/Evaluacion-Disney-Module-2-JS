@@ -1,12 +1,12 @@
 'use strict';
 
 const charactersUl = document.querySelector('.js_characters');
-const placeHolderPhoto = 'https://via.placeholder.com/110x105/ffffff/555555/?text=Disney';
+const placeHolderPhoto = 'https://via.placeholder.com/105x100/ffffff/555555/?text=Disney';
 const favourites = document.querySelector('.js__favourites');
 const searchForm = document.querySelector('.js__searchForm');
 const inputSearch = document.querySelector('.js__inputSearch');
 const btnSearch = document.querySelector('.js__btnSearch');
-//const newPhoto = { imageUrl: placeHolderPhoto };
+const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
 const trashCan = document.querySelector('.js_trashCan');
@@ -15,6 +15,25 @@ const deleteAllBtn = document.querySelector('.js__deleteAllBtn');
 
 
 // FUNCIONES
+
+// PRUEBA PLACEHOLDER
+
+function placeHolderPicInsert() {
+  const index1 = 12;
+  const index2 = 39;
+  const imageUrl = placeHolderPhoto;
+
+  if (characterInfo[index1]) {
+    characterInfo[index1].imageUrl = imageUrl;
+  }
+
+  if (characterInfo[index2]) {
+    characterInfo[index2].imageUrl = imageUrl;
+  }
+
+  return characterInfo;
+}
+
 function renderCharacter(characterData) {
   charactersUl.innerHTML += `
     <ul class="character-card" data-id="${characterData._id}">
@@ -142,6 +161,7 @@ searchForm.addEventListener ('submit', (event) => {
    characterInfo = data.data;
 
    renderAllCharacters();
+   placeHolderPicInsert();
   })
 });
 
@@ -152,6 +172,8 @@ fetch ('//api.disneyapi.dev/character?pageSize=50')
 .then(data => {
  console.log(data.data);
  characterInfo = data.data;
+
+ placeHolderPicInsert();
 
  renderAllCharacters();
  const storedFavouritesData = localStorage.getItem('favouritesData');
