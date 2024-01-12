@@ -6,7 +6,6 @@ const favourites = document.querySelector('.js__favourites');
 const searchForm = document.querySelector('.js__searchForm');
 const inputSearch = document.querySelector('.js__inputSearch');
 const btnSearch = document.querySelector('.js__btnSearch');
-const newPhoto = { imageUrl: placeHolderPhoto };
 let characterInfo = [];
 let favouritesData = [];
 const trashCan = document.querySelector('.js_trashCan');
